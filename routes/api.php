@@ -20,7 +20,7 @@ use App\Http\Controllers\AuthController;
 // Todo: Get all posts
 Route::get('/posts', [PostControl::class,'index']);
 
-// Todo: Get single post
+// Todo: Get single post by id
 Route::get('/post/{id}', [PostControl::class,'show']);
 
 // Todo: Get post by category
