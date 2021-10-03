@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: dist
-          path: dist
+          path: /
           
   deploy:
     name: Deploy Project 🚀
