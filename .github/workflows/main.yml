@@ -17,14 +17,23 @@ jobs:
       - name: Install dependencies
         run: composer install
         
-  #     - name: Build dependencies
-  #       run: npm run build
+      - name: Copy .env file
+        run: cp .env.example .env
+
+
+
+      - name: Add Database configuration
+        run: echo DB_CONNECTION=mysql >> .env & echo DB_HOST=127.0.0.1 >> .env & echo DB_PORT=3406 >> .env & echo DB_DATABASE=ahmad_blog_api >> .env & echo DB_USERNAME=root >> .env & echo DB_PASSWORD=verySecrit >> .env
+
         
-  #     - name: Archive production artifact
-  #       uses: actions/upload-artifact@main
-  #       with:
-  #         name: dist
-  #         path: dist
+      - name: Generation key 
+        run: php artisan key:generate
+        
+      - name: Archive production artifact
+        uses: actions/upload-artifact@main
+        with:
+          name: dist
+          path: dist
           
   # deploy:
   #   name: Deploy Project 🚀
