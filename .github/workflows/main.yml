@@ -46,12 +46,12 @@ jobs:
         with: 
           name: dist
           
-  #     - name: Sync files to hosting
-  #       uses: SamKirkland/FTP-Deploy-Action@4.0.0
-  #       with: 
-  #         server: ${{ secrets.FTP_SERVER }}
-  #         username: ${{ secrets.FTP_USERNAME }}
-  #         password: ${{ secrets.FTP_PASSWORD }}
+      - name: Sync files to hosting
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with: 
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
 
 
   # build_docker_image:
