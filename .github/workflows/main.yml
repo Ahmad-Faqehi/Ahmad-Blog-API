@@ -6,52 +6,52 @@ on:
 
 jobs:
       
-  build:
-    name: Build Project ⛏
-    runs-on: ubuntu-latest
-    steps:
+  # build:
+  #   name: Build Project ⛏
+  #   runs-on: ubuntu-latest
+  #   steps:
     
-      - name: Checkout repository
-        uses: actions/checkout@main
+  #     - name: Checkout repository
+  #       uses: actions/checkout@main
         
-      - name: Install dependencies
-        run: composer install
+  #     - name: Install dependencies
+  #       run: composer install
         
-      - name: Copy .env file
-        run: cp .env.example .env
+  #     - name: Copy .env file
+  #       run: cp .env.example .env
 
 
 
-      - name: Add Database configuration
-        run: echo DB_CONNECTION=mysql >> .env & echo DB_HOST=127.0.0.1 >> .env & echo DB_PORT=3406 >> .env & echo DB_DATABASE=ahmad_blog_api >> .env & echo DB_USERNAME=root >> .env & echo DB_PASSWORD=verySecrit >> .env
+  #     - name: Add Database configuration
+  #       run: echo DB_CONNECTION=mysql >> .env & echo DB_HOST=127.0.0.1 >> .env & echo DB_PORT=3406 >> .env & echo DB_DATABASE=ahmad_blog_api >> .env & echo DB_USERNAME=root >> .env & echo DB_PASSWORD=verySecrit >> .env
 
 
-      - name: Generation key 
-        run: php artisan key:generate
+  #     - name: Generation key 
+  #       run: php artisan key:generate
         
-      - name: Archive production artifact
-        uses: actions/upload-artifact@main
-        with:
-          name: dist
-          path: ./
+  #     - name: Archive production artifact
+  #       uses: actions/upload-artifact@main
+  #       with:
+  #         name: dist
+  #         path: ./
           
-  deploy:
-    name: Deploy Project 🚀
-    needs: build
-    runs-on: ubuntu-latest
-    steps: 
+  # deploy:
+  #   name: Deploy Project 🚀
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps: 
 
-      - name: Download artifact
-        uses: actions/download-artifact@main
-        with: 
-          name: dist
+  #     - name: Download artifact
+  #       uses: actions/download-artifact@main
+  #       with: 
+  #         name: dist
           
-      - name: Sync files to hosting
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
-        with: 
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+  #     - name: Sync files to hosting
+  #       uses: SamKirkland/FTP-Deploy-Action@4.0.0
+  #       with: 
+  #         server: ${{ secrets.FTP_SERVER }}
+  #         username: ${{ secrets.FTP_USERNAME }}
+  #         password: ${{ secrets.FTP_PASSWORD }}
 
 
   # build_docker_image:
